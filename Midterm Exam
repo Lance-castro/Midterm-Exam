@@ -1,0 +1,38 @@
+import React, { useState } from 'react';
+
+function Stack() {
+  const [stack, setStack] = useState([]);
+
+  const handlePush = () => {
+    const newValue = parseInt(prompt('Enter a new value to push onto the stack:'));
+    setStack([...stack, newValue]);
+  };
+
+  const handlePop = () => {
+    if (stack.length === 0) {
+      alert('Stack is empty. Cannot pop.');
+      return;
+    }
+    const newStack = new Array(stack.length - 1);
+    for (let i = 0; i < stack.length - 1; i++) {
+      newStack[i] = stack[i];
+    }
+    setStack(newStack);
+  };
+
+  return (
+    <div>
+      <h2>Stack</h2>
+      <button onClick={handlePush}>Push</button>
+      <button onClick={handlePop}>Pop</button>
+      <div>
+        <h3>Stack Contents:</h3>
+        {stack.map((value, index) => (
+          <div key={index}>{value}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default Stack;
